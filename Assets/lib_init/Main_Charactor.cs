@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Main_Charactor : actor_base_SP
+public class Main_Charactor : actor_base2x5D_SP
 {
     public int FrameRate = 60;
     public GameObject Center_mainOBJ;
@@ -24,12 +24,17 @@ public class Main_Charactor : actor_base_SP
 
     private void FixedUpdate()
     {
+        // Var_SpeedCurret = Mathf.Lerp(0, Var_SpeedCurret, Time.deltaTime * Var_SpeedMxx);
 
+        float radians = Var_Charactor_floatDir * 360f * Mathf.Deg2Rad;
+        float x = -Mathf.Sin(radians); float y = Mathf.Cos(radians);
+        sysVar_Char_DirVector = new Vector3(x, 0, y);
+
+        this.transform.position += sysVar_Char_DirVector * Var_SpeedCurret * Time.deltaTime;
     }
 
     void Update()
     {
-        SysDeltatime = Time.deltaTime;
         base.Sc_Update();
 
         Vector3 mousePosition = Input.mousePosition;
@@ -42,6 +47,10 @@ public class Main_Charactor : actor_base_SP
         {
             usedVar_CharTarget2V3 = mousePosition;
             Var_SpeedCurret = SpeedMax;
+        }
+        else
+        {
+            Var_SpeedCurret = 0;
         }
 
         if (Bt_EasyFace2Test)
