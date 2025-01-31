@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: "\u7D2B\u7535\uFF01\uFF01\uFF01\uFF01"
   productName: "\u7D2B\u7535\u4EC0\u4E48\u4EC0\u4E48\u540D\u5B57\u5F88\u957F\u90A3\u4E2A"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -707,7 +707,7 @@ PlayerSettings:
     PS4: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
     PS5: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
     QNX: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
-    Standalone: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    Standalone: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2;UNITY_PIPELINE_URP
     WebGL: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
