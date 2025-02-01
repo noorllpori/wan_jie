@@ -13,11 +13,17 @@ public class test_fx : Fx_init
     private int end_max;
     private float stutaTime;
     private float curtTime;
-    MeshRenderer meshRenderer ;
+    MeshRenderer meshRenderer;
+    public GameObject Api;
+    camera_api cam_api;
 
     void Start()
     {
         base._update();
+        Api = GameObject.Find("API");
+        cam_api = Api.GetComponent<camera_api>();
+        meshRenderer = FxMesh_Render.GetComponent<MeshRenderer>();
+        meshRenderer.enabled = false;
     }
 
     void Update()
@@ -34,6 +40,7 @@ public class test_fx : Fx_init
             end_max = end_flip.Length - 1;
             stutaTime = Time.time;
             curtTime = Time.time+ time_rate;
+            cam_api._fx = true;
         }
 
         if (_isPlaying)
@@ -73,8 +80,8 @@ public class test_fx : Fx_init
             {
                 meshRenderer.enabled = false;
                 _isPlaying = false;
+                cam_api._fx = false;
             }
-            // setMainTex(start_flip[0]);
             curtTime += Time.deltaTime;
         }
     }
