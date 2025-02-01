@@ -63,7 +63,7 @@ public class test_fx : Fx_init
                     stutaTime = curtTime;
                     setMainTex(cycle_flip[(cycle_id % (cycle_flip.Length))]);
                     cycle_id++;
-                    if (cycle_id > cycle_max) { stuta++; }
+                    if (cycle_id > cycle_max) { stuta++; cam_api._fx = false; }
                 }
             }
             else if (stuta == 2)
@@ -80,7 +80,6 @@ public class test_fx : Fx_init
             {
                 meshRenderer.enabled = false;
                 _isPlaying = false;
-                cam_api._fx = false;
             }
             curtTime += Time.deltaTime;
         }

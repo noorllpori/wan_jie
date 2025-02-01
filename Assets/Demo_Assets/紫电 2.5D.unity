@@ -29693,9 +29693,9 @@ MonoBehaviour:
   virtualCam: {fileID: 2000866386}
   volume: {fileID: 11400000, guid: 8a0785e51cc741e418c2bc5fcf09919d, type: 2}
   _fx: 0
-  volume_fx_CA: {x: 0, y: 0.4}
+  volume_fx_CA: {x: 0, y: 0.6}
   volume_fx_Len: {x: 0, y: 0.3}
-  volume_fx_LenScale: {x: 1, y: 1.13}
+  volume_fx_LenScale: {x: 1, y: 1.2}
   back_add: 12
   cam_freq: {x: 0.5, y: 3}
   fx_fov_pos: {x: 0, y: 0, z: 0}
@@ -37732,7 +37732,7 @@ MonoBehaviour:
   _test_play: 0
   PlayRate: 12
   time_rate: 0
-  cycle_time: 2
+  cycle_time: 1.2
   Play: 0
   _isPlaying: 0
   FxMesh_Render: {fileID: 597531540}
