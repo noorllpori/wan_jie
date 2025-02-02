@@ -64,6 +64,16 @@ public class camera_api : MonoBehaviour
 
     void FX()
     {
+        if (_fx)
+        {
+            float radians = ( (float)main_charactor.sysVar_Charactor_DirIntSplit / (float)main_charactor.directSplit) * 360f * Mathf.Deg2Rad;
+            float x = -Mathf.Sin(radians); float y = Mathf.Cos(radians);
+            virtualCam.m_LookAt.localPosition = new Vector3(x, 0, y) * 0.5f;
+        }
+        else
+        {
+            virtualCam.m_LookAt.localPosition = Vector3.zero;
+        }
         back_fov_curret = Mathf.Lerp(back_fov_curret, back_fx, back_add * Time.deltaTime * 0.5f);
         back_fx = _fx ? 1 : 0;
         Mathf.Clamp01(back_fov_curret); Mathf.Clamp01(back_fx);

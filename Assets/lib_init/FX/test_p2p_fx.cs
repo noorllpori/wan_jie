@@ -39,7 +39,8 @@ public class test_p2p_fx : Fx_init
         {
             this.transform.position = start_obj.transform.position + new Vector3(0,0.4f,0); 
             this.gameObject.transform.rotation = Quaternion.Euler(0f, -(cam_api.main_charactor.sysVar_Charactor_DirIntSplit * 360f / cam_api.main_charactor.directSplit) +270, 0f); 
-            float t = cam_api.main_charactor.sysVar_Charactor_DirIntSplit> (cam_api.main_charactor.directSplit / 2)?1:-1 * Mathf.PingPong( (float) (cam_api.main_charactor.sysVar_Charactor_DirIntSplit - (cam_api.main_charactor.directSplit) / 2)/ (float)(cam_api.main_charactor.directSplit / 2),0.5f );
+            float t = cam_api.main_charactor.sysVar_Charactor_DirIntSplit > (cam_api.main_charactor.directSplit / 2f) ? 1f : -1f * Mathf.PingPong( (float) (cam_api.main_charactor.sysVar_Charactor_DirIntSplit - (cam_api.main_charactor.directSplit) / 2f)/ (float)(cam_api.main_charactor.directSplit / 2f),0.5f );
+            // Debug.Log(t);
             meshRenderer.gameObject.transform.localRotation = Quaternion.Euler(-90f - t * 50f, 0f, -90f);
             meshRenderer = FxMesh_Render.GetComponent<MeshRenderer>();
             meshRenderer.enabled = true;
