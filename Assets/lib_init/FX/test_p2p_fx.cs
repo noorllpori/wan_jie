@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
-public class test_fx : Fx_init
+public class test_p2p_fx : Fx_init
 {
     private int stuta;
     private int start_id;
@@ -18,8 +18,11 @@ public class test_fx : Fx_init
     public GameObject Api;
     camera_api cam_api;
 
+    public GameObject start_obj;
     public Vector3 start_pos;
+    public GameObject end_obj;
     public Vector3 end_pos;
+
 
     void Start()
     {
@@ -34,6 +37,10 @@ public class test_fx : Fx_init
     {
         if (Play)
         {
+            this.transform.position = start_obj.transform.position + new Vector3(0,0.4f,0); 
+            this.gameObject.transform.rotation = Quaternion.Euler(0f, -(cam_api.main_charactor.sysVar_Charactor_DirIntSplit * 360f / cam_api.main_charactor.directSplit) +270, 0f); 
+            float t = cam_api.main_charactor.sysVar_Charactor_DirIntSplit> (cam_api.main_charactor.directSplit / 2)?1:-1 * Mathf.PingPong( (float) (cam_api.main_charactor.sysVar_Charactor_DirIntSplit - (cam_api.main_charactor.directSplit) / 2)/ (float)(cam_api.main_charactor.directSplit / 2),0.5f );
+            meshRenderer.gameObject.transform.localRotation = Quaternion.Euler(-90f - t * 50f, 0f, -90f);
             meshRenderer = FxMesh_Render.GetComponent<MeshRenderer>();
             meshRenderer.enabled = true;
             Play = false; _isPlaying = true;

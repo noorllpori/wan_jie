@@ -2,16 +2,26 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
+[ExecuteAlways]
 public class camera_api : MonoBehaviour
 {
+    [Header("编辑器测试开关")]
+    [SerializeField]
+    private bool EditorMode;
+
     public CinemachineVirtualCamera virtualCam;
     public VolumeProfile volume;
+    public Main_Charactor main_charactor;
 
-    // FX fov
+    [Header("主角参数获取")]
+    public int _main_dir;
+
+    [Header("视角特效")]
     public bool _fx = false;
     public Vector2 volume_fx_CA;
     public Vector2 volume_fx_Len;
@@ -36,7 +46,20 @@ public class camera_api : MonoBehaviour
 
     void Update()
     {
-        FX();
+        if (EditorMode || Application.isPlaying)
+        {
+            FX();
+        }
+        if (Application.isPlaying)
+        {
+            main_char_info();
+        }
+    }
+
+    void main_char_info()
+    {
+
+        _main_dir = main_charactor.sysVar_Charactor_DirIntSplit;
     }
 
     void FX()
@@ -57,4 +80,6 @@ public class camera_api : MonoBehaviour
             lensDistortion.scale.value = Mathf.Lerp(volume_fx_LenScale.x, volume_fx_LenScale.y, back_fov_curret);
         }
     }
+
 }
+
