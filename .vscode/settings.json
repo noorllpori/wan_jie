@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "紫电什么什么名字很长那个.sln"
+    "dotnet.defaultSolution": "wan_jie.sln"
 }

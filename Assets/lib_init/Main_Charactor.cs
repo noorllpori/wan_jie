@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Main_Charactor : actor_base2x5D_SP
 {
+    private enum 状态
+    {
+        移动,
+        搓招
+    }
+    private 状态 当前状态;
     public int FrameRate = 60;
     public GameObject Center_mainOBJ;
 
     public bool TargettoMouse = false;
 
     public bool Bt_EasyFace2Test = false;
-
     public float SpeedMax;
-
+    public GameObject 搓招栏;
     void Start()
     {
         Application.targetFrameRate = FrameRate;
@@ -32,26 +39,39 @@ public class Main_Charactor : actor_base2x5D_SP
 
         this.transform.position += sysVar_Char_DirVector * Var_SpeedCurret * Time.deltaTime;
     }
-
     void Update()
     {
         base.Sc_Update();
 
-        Vector3 mousePosition = Input.mousePosition;
-
         TargettoMouse = Input.GetMouseButton(0)?true:false;
 
-        usedVar_CharTarget2V3 = Input.GetMouseButtonDown(1) ? mousePosition : usedVar_CharTarget2V3;
-
-        if (TargettoMouse)
+        usedVar_CharTarget2V3 = Input.GetMouseButtonDown(1) ? Input.mousePosition : usedVar_CharTarget2V3;
+        //状态机设计模式
+        判定目前处于的状态();
+        执行状态对应的操作();
+    }
+    void 判定目前处于的状态()
+    {
+        if(TargettoMouse)当前状态 = 状态.移动;
+        else 当前状态 = 状态.搓招;
+    }
+    void 执行状态对应的操作()
+    {
+        switch (当前状态)
         {
-            usedVar_CharTarget2V3 = mousePosition;
-            Var_SpeedCurret = SpeedMax;
+            case 状态.移动:
+                人物移动();
+                break;
+            case 状态.搓招:
+                搓招();
+                break;
         }
-        else
-        {
-            Var_SpeedCurret = 0;
-        }
+    }
+    void 人物移动()
+    {
+        usedVar_CharTarget2V3 = Input.mousePosition;
+        Var_SpeedCurret = SpeedMax;
+        搓招栏.GetComponent<TextMeshProUGUI>().text = "";
 
         if (Bt_EasyFace2Test)
         {
@@ -60,6 +80,26 @@ public class Main_Charactor : actor_base2x5D_SP
         else
         {
             Center_mainOBJ.transform.localScale = Vector3.one;
+        }
+    }
+    void 搓招()
+    {
+        Var_SpeedCurret = 0;
+        for(char i = 'a'; i <= 'z'; i++)
+        {
+            if (Input.GetKeyDown(i.ToString()))
+            {
+                搓招栏.GetComponent<TextMeshProUGUI>().text += i.ToString();
+                if(搓招栏.GetComponent<TextMeshProUGUI>().text.Length > 8)
+                {
+                    搓招栏.GetComponent<TextMeshProUGUI>().text = 搓招栏.GetComponent<TextMeshProUGUI>().text.Substring(1);
+                }
+                if(释放技能.Instance.技能字典.ContainsKey(搓招栏.GetComponent<TextMeshProUGUI>().text))
+                {
+                    释放技能.Instance.释放(搓招栏.GetComponent<TextMeshProUGUI>().text);
+                    搓招栏.GetComponent<TextMeshProUGUI>().text = "";
+                }
+            }
         }
     }
 }
