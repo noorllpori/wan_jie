@@ -21,6 +21,7 @@ public class Main_Charactor : actor_base2x5D_SP
     public bool Bt_EasyFace2Test = false;
     public float SpeedMax;
     public GameObject 搓招栏;
+    public GameObject 搓招栏括号;
     void Start()
     {
         Application.targetFrameRate = FrameRate;
@@ -72,6 +73,7 @@ public class Main_Charactor : actor_base2x5D_SP
         usedVar_CharTarget2V3 = Input.mousePosition;
         Var_SpeedCurret = SpeedMax;
         搓招栏.GetComponent<TextMeshProUGUI>().text = "";
+        搓招栏括号.GetComponent<TextMeshProUGUI>().text = "";
 
         if (Bt_EasyFace2Test)
         {
@@ -84,6 +86,7 @@ public class Main_Charactor : actor_base2x5D_SP
     }
     void 搓招()
     {
+        搓招栏括号.GetComponent<TextMeshProUGUI>().text = "<                    >";
         Var_SpeedCurret = 0;
         for(char i = 'a'; i <= 'z'; i++)
         {
@@ -94,10 +97,14 @@ public class Main_Charactor : actor_base2x5D_SP
                 {
                     搓招栏.GetComponent<TextMeshProUGUI>().text = 搓招栏.GetComponent<TextMeshProUGUI>().text.Substring(1);
                 }
-                if(释放技能.Instance.技能字典.ContainsKey(搓招栏.GetComponent<TextMeshProUGUI>().text))
+                for(int j = 0; j < 搓招栏.GetComponent<TextMeshProUGUI>().text.Length; j++)
                 {
-                    释放技能.Instance.释放(搓招栏.GetComponent<TextMeshProUGUI>().text);
-                    搓招栏.GetComponent<TextMeshProUGUI>().text = "";
+                    if(释放技能.Instance.技能字典.ContainsKey(搓招栏.GetComponent<TextMeshProUGUI>().text.Substring(j)))
+                    {
+                        释放技能.Instance.释放(搓招栏.GetComponent<TextMeshProUGUI>().text.Substring(j));
+                        搓招栏.GetComponent<TextMeshProUGUI>().text = "";
+                        break;
+                    }
                 }
             }
         }

@@ -35,7 +35,6 @@ public class 释放技能 : MonoBehaviour
     public GameObject 技能2特效;
     public void 释放(string 技能快捷键)
     {
-        if (!技能字典.ContainsKey(技能快捷键))return;
         string 技能名 = 技能字典[技能快捷键];
         Type type = this.GetType();
         MethodInfo methodInfo = type.GetMethod(技能名);
