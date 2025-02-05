@@ -15,9 +15,7 @@ public class Main_Charactor : actor_base2x5D_SP
     private 状态 当前状态;
     public int FrameRate = 60;
     public GameObject Center_mainOBJ;
-
     public bool TargettoMouse = false;
-
     public bool Bt_EasyFace2Test = false;
     public float SpeedMax;
     public GameObject 搓招栏;
@@ -45,7 +43,7 @@ public class Main_Charactor : actor_base2x5D_SP
         base.Sc_Update();
 
         TargettoMouse = Input.GetMouseButton(0)?true:false;
-
+        usedVar_CharTarget2V3 = Input.mousePosition;
         usedVar_CharTarget2V3 = Input.GetMouseButtonDown(1) ? Input.mousePosition : usedVar_CharTarget2V3;
         //状态机设计模式
         判定目前处于的状态();
@@ -70,7 +68,6 @@ public class Main_Charactor : actor_base2x5D_SP
     }
     void 人物移动()
     {
-        usedVar_CharTarget2V3 = Input.mousePosition;
         Var_SpeedCurret = SpeedMax;
         搓招栏.GetComponent<TextMeshProUGUI>().text = "";
         搓招栏括号.GetComponent<TextMeshProUGUI>().text = "";

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MainC
+  m_Name: MainB
   m_Shader: {fileID: -6465566751694194690, guid: 7455c6f23f894764b8222c89ee501417, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -223,7 +223,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 6b61b1c203f1521499f873437c7278dc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2aa9ff4963b6bb4408b14969c1a2dd38, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ThicknessMap:
